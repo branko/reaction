@@ -4,6 +4,11 @@ class Api::BoardsController < ApplicationController
     render :index
   end
 
+  def show
+    @board = Board.find(params[:id])
+    render :show
+  end
+
   def create
     @board = Board.new(board_params)
 
