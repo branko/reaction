@@ -1,7 +1,7 @@
 import React from 'react';
-import CardList from './CardList';
+import CardListContainer from './CardListContainer';
 
-const List = () => {
+const List = ({ title, id }) => {
   return (
 
     <div className="list-wrapper">
@@ -9,14 +9,14 @@ const List = () => {
             <div className="list">
                 <a className="more-icon sm-icon" href=""></a>
                 <div>
-                    <p className="list-title">Stuff to try (this is a list)</p>
+                    <p className="list-title">{title}</p>
                 </div>
                 <div className="add-dropdown add-top">
                     <div className="card"></div><a className="button">Add</a><i className="x-icon icon"></i>
                     <div className="add-options"><span>...</span>
                     </div>
                 </div>
-                <CardList />
+                <CardListContainer list_id={id}/>
             </div>
         </div>
     </div>
