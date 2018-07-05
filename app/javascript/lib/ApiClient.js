@@ -36,6 +36,9 @@ const apiClient = {
       .then(unwrapData)
       .then(callback)
       .catch(logError);
+  },
+  createList: function(title, board_id) {
+    console.log(`${title}, ${board_id}`)
   }
 };
 

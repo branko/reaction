@@ -1,5 +1,6 @@
 import React from 'react';
 import ListListing from './ListListing'
+import ToggleableListFormContainer from './ToggleableListFormContainer'
 import { fetchBoard } from '../../actions/BoardActions'
 import PropTypes from 'prop-types'
 
@@ -28,9 +29,16 @@ export default class ListListContainer extends React.Component {
     let lists = store.getState().lists.filter(list => list.board_id === +id);
 
     return(
-      <ListListing
-        lists={lists}
-      />
+      <main>
+        <div id="list-container" className="list-container">
+          <ListListing
+            lists={lists}
+          />
+          <ToggleableListFormContainer
+            boardId = {this.props.match.params.id}
+          />
+        </div>
+      </main>
     );
   }
 }

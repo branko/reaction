@@ -11,13 +11,10 @@ const ListListing = ({ lists }) => {
   });
 
   return (
-    <main>
-      <div id="list-container" className="list-container">
-        <div id="existing-lists" className="existing-lists">
-          {listGroup}
-        </div>
-      </div>
-    </main>
+    <div id="existing-lists" className="existing-lists">
+      {listGroup}
+    </div>
+
   );
 };
 
