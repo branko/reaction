@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :boards, only: [:index, :show, :create]
   end
 
+  get '/boards/:id', to: 'home#index'
+  
   get '/ui/all_boards', to: 'ui#all_boards'
   get '/ui/single_board', to: 'ui#single_board'
   get '/ui/create_board', to: 'ui#create_board'
