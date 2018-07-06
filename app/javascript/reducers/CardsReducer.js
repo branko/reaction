@@ -3,7 +3,7 @@ export default function cardsReducer(state = [], action) {
     const { lists, ...newBoardWithoutLists } = action.board;
     const cards = lists.reduce((acc, list) => acc.concat(list.cards), [])
 
-    return state.concat(cards);
+    return cards;
   } else {
     return state;
   }

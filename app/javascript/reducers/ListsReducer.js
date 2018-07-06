@@ -5,7 +5,7 @@ export default function listsReducer(state = [], action) {
       return listWithoutCards;
     })
 
-    return state.concat(listsWithoutCards);
+    return listsWithoutCards;
   } else {
     return state;
   }

@@ -10,6 +10,10 @@ export default class ToggleableListFormContainer extends React.Component {
     inputText: '',
   }
 
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
   toggleForm = () => {
     this.setState(prevState => {
       return {
@@ -27,8 +31,16 @@ export default class ToggleableListFormContainer extends React.Component {
   }
 
   handleSubmit = () => {
-    apiClient.createList(this.state.inputText, this.props.boardId)
+    apiClient.createList(this.state.inputText, this.props.boardId, () => {
+      this.context.store.dispatch(fetchBoard(this.props.boardId))
+    })
     this.setState({formOpen: false})
+  }
+
+  handleClose = () => {
+    this.setState({
+      formOpen: false,
+    })
   }
 
   render() {
@@ -38,6 +50,7 @@ export default class ToggleableListFormContainer extends React.Component {
         formOpen={this.state.formOpen}
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
+        onClose={this.handleClose}
         inputText={this.state.inputText}
       />
     )

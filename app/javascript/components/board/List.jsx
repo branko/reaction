@@ -2,7 +2,7 @@ import React from 'react';
 import CardListContainer from './CardListContainer';
 import EditableListTitle from './EditableListTitle';
 
-const List = ({ title, id }) => {
+const List = ({ title, id, boardId }) => {
   return (
     <div className="list-wrapper">
         <div className="list-background">
@@ -11,6 +11,7 @@ const List = ({ title, id }) => {
                 <EditableListTitle
                   id={id}
                   title={title}
+                  boardId={boardId}
                 />
                 <div className="add-dropdown add-top">
                     <div className="card"></div><a className="button">Add</a><i className="x-icon icon"></i>

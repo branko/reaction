@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class ToggleableListForm extends React.Component {
 
   onChange = (e) => {
@@ -17,7 +16,7 @@ export default class ToggleableListForm extends React.Component {
         <input onChange={this.onChange} type="text" placeholder="Add a list..." value={this.props.inputText} />
         <div>
           <input onClick={this.submitList} type="submit" className="button" value="Save" />
-          <i className="x-icon icon"></i>
+          <i onClick={this.props.onClose} className="x-icon icon"></i>
         </div>
       </div>
     )

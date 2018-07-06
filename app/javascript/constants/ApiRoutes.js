@@ -5,3 +5,7 @@ export const CREATE_LIST_URL = '/api/lists';
 export function boardUrl(id) {
   return '/api/boards/' + id;
 }
+
+export function listUrl(id) {
+  return '/api/lists/' + id;
+}

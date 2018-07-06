@@ -2,11 +2,12 @@ import React from 'react';
 import List from './List';
 
 const ListListing = ({ lists }) => {
-  const listGroup = lists.map(list => {
+  const listGroup = lists.map((list, i) => {
     return <List
-            key={list.id}
+            key={'list-' + i}
             title={list.title}
             id={list.id}
+            boardId={list.board_id}
           />
   });
 
