@@ -39,7 +39,6 @@ export function fetchBoard(id) {
   return function(dispatch) {
     dispatch(fetchBoardRequest());
     apiClient.getBoard(id, board =>  {
-      console.log(board)
       dispatch(fetchBoardSuccess(board))
     });
   };
