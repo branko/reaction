@@ -1,8 +1,7 @@
 class Api::ListsController < ApplicationController
 
   def create
-    board_id = params[:board_id]
-    board = Board.find(board_id)
+    board = Board.find(params[:board_id])
     @list = List.new(list_params.merge({board: board}))
 
     if @list.save
@@ -11,8 +10,24 @@ class Api::ListsController < ApplicationController
       @error = @list.errors.full_messages.join(', ')
       render 'api/shared/error', status: :unprocessable_entity
     end
+
   rescue ActionController::ParameterMissing
     @error = "Invalid list data provided"
+    render 'api/shared/error', status: :unprocessable_entity
+  end
+
+  def update
+    @list = List.find(params[:id])
+
+    if @list.update(list_params)
+      render :update
+    else
+      @error = @list.errors.full_messages.join(', ')
+      render 'api/shared/error', status: :unprocessable_entity
+    end
+
+  rescue ActionController::ParameterMissing
+    @error = "Invalid list id provided"
     render 'api/shared/error', status: :unprocessable_entity
   end
 
@@ -24,44 +39,42 @@ class Api::ListsController < ApplicationController
 end
 
 
-# ## 1.9. POST /api/lists
+# ## 1.10. PUT/PATCH /api/lists/:id
 
-# Creates a list.
+# Update a list.
 
-# ### 1.9.1. Controller#Action
+# ### 1.10.1. Controller#Action
 
-# `api/lists#create`
+# `api/lists#update`
 
-# ### 1.9.2. Expected Payload
+# ### 1.10.2. Expected Payload
 
-# NOTE: The `board_id` where the list will reside is required.
-
-# ```json
-# {
-#   "board_id": 1,
-#   "list": { 
-#     "title": "My list"
-#   }
-# }
-# ```
-
-# ### 1.9.3. Successful Response
-
-# The list is returned in JSON form with a 201 status code.
-
-# #### 1.9.3.1. Example Response
+# Any combination of `title` and `position` can be provided. The only requirement is that at least one must be provided.
 
 # ```json
 # {
-#   "id": 10,
-#   "title": "My list",
-#   "board_id": 1,
-#   "created_at": "2017-10-06T23:40:26.606Z",
-#   "updated_at": "2017-10-06T23:40:26.606Z",
-#   "position": 65535.0
+#   "title": "Updated title",
+#   "position": 137882
 # }
 # ```
 
-# ### 1.9.4. Error Response
+# ### 1.10.3. Successful Response
 
-# If a board with the provided `board_id` doesn’t exist, an error will be returned with a 404 status code. If no title is provided, an error is returned with a 422 “Unprocessable Entity” status code.
+# The list is returned in JSON form with a 200 status code.
+
+# #### 1.10.3.1. Example Response
+
+# ```json
+# {
+#   "id": 1,
+#   "title": "Updated title",
+#   "position": 137882.0,
+#   "board_id": 1,
+#   "created_at": "2017-10-04T05:57:07.222Z",
+#   "updated_at": "2017-10-06T23:48:44.540Z"
+# }
+# ```
+
+# ### 1.10.4. Error Response
+
+# If a list with the provided `id` doesn’t exist, an error will be returned with a 404 status code. If no title or position is provided, an error is returned with a 422 “Unprocessable Entity” status code.
