@@ -28,6 +28,7 @@ export default class ToggleableListFormContainer extends React.Component {
 
   handleSubmit = () => {
     apiClient.createList(this.state.inputText, this.props.boardId)
+    this.setState({formOpen: false})
   }
 
   render() {

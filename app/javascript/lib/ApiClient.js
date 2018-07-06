@@ -37,8 +37,11 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
-  createList: function(title, board_id) {
-    console.log(`${title}, ${board_id}`)
+  createList: function(title, board_id, callback) {
+    return axios.post(routes.CREATE_LIST_URL, { board_id, title })
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
   },
   updateList: function(list_id, { title }) {
     console.log(`id: ${list_id}, new title: ${title}`)
