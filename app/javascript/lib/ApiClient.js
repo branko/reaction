@@ -39,6 +39,9 @@ const apiClient = {
   },
   createList: function(title, board_id) {
     console.log(`${title}, ${board_id}`)
+  },
+  updateList: function(list_id, { title }) {
+    console.log(`id: ${list_id}, new title: ${title}`)
   }
 };
 
