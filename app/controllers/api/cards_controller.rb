@@ -17,6 +17,21 @@ class Api::CardsController < ApplicationController
     render 'api/shared/error', status: :unprocessable_entity
   end
 
+  def update
+    @card = Card.find(params[:id])
+
+    if @card.update(card_params)
+      render :update
+    else
+      @error = @card.errors.full_messages.join(', ')
+      render 'api/shared/error', status: :unprocessable_entity
+    end
+  
+  rescue ActionController::ParameterMissing
+    @error = "Invalid card id provided"
+    render 'api/shared/error', status: :unprocessable_entity
+  end
+
   private
 
   def card_params
