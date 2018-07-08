@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705193249) do
+ActiveRecord::Schema.define(version: 20180708055534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.string "description", default: ""
+    t.bigint "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_actions_on_card_id"
+  end
 
   create_table "boards", force: :cascade do |t|
     t.string "title"
@@ -29,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180705193249) do
     t.datetime "updated_at", null: false
     t.text "labels", default: [], array: true
     t.date "due_date"
+    t.boolean "completed", default: false
+    t.text "description"
     t.index ["board_id"], name: "index_cards_on_board_id"
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
