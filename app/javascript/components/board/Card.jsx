@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 // import moment from 'moment';
 
-const Card = ({ title, labels, dueDate }) => {
+const Card = ({ id, title, labels, dueDate }) => {
   let colorLabels = labels.map((l, i) => {
     return <div key={i} className={`card-label ${l} colorblindable`}></div>
   })
@@ -35,15 +37,17 @@ const Card = ({ title, labels, dueDate }) => {
   // dueDate = moment(dueDate).format('MMMM Do')
 
   return (
-    <div className="card-background">
-        <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-            <div className="card-info">
-                {colorLabels}
-                <p>{title}</p>
-            </div>
-            {cardIcons()}
-        </div>
-    </div>
+    <Link to={`/cards/${id}`}>
+      <div className="card-background">
+          <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
+              <div className="card-info">
+                  {colorLabels}
+                  <p>{title}</p>
+              </div>
+              {cardIcons()}
+          </div>
+      </div>
+    </Link>
   );
 };
 
