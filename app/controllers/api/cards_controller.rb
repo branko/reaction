@@ -9,9 +9,9 @@ class Api::CardsController < ApplicationController
   end
 
   def create
-    list = params[:list_id]#List.find(params[:list_id])
-    #board = Board.find(list.board_id)
-    @card = Card.new(card_params.merge({list_id: list}).merge(board_id: list.board_id))
+    list = List.find(params[:list_id])
+    board = Board.find(list.board_id)
+    @card = Card.new(card_params.merge({list: list}).merge(board: board))
 
     if @card.save
       create_actions(@card, { new: true })
@@ -20,7 +20,7 @@ class Api::CardsController < ApplicationController
       @error = @card.errors.full_messages.join(', ')
       render 'api/shared/error', status: :unprocessable_entity
     end
-    
+
   rescue ActiveRecord::RecordNotFound
     @error = "Invalid list id provided"
     render 'api/shared/error', status: :not_found
@@ -35,7 +35,7 @@ class Api::CardsController < ApplicationController
       @error = @card.errors.full_messages.join(', ')
       render 'api/shared/error', status: :unprocessable_entity
     end
-  
+
   rescue ActiveRecord::RecordNotFound
     @error = "Invalid card id provided"
     render 'api/shared/error', status: :not_found

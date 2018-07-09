@@ -6,6 +6,8 @@ export default function listsReducer(state = [], action) {
     })
 
     return listsWithoutCards;
+  } else if (action.type === 'CREATE_LIST_SUCCESS') {
+    return state.concat(action.list)
   } else {
     return state;
   }

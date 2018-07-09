@@ -1,7 +1,7 @@
 import React from 'react';
 import ListTitle from './ListTitle'
 import ListTitleForm from './ListTitleForm'
-import { fetchBoard } from '../../actions/BoardActions'
+import { editList } from '../../actions/ListActions'
 import PropTypes from 'prop-types'
 import apiClient from '../../lib/ApiClient'
 
@@ -16,9 +16,9 @@ class EditableListTitle extends React.Component {
   };
 
   handleSubmit = () => {
-    apiClient.updateList(this.props.id, {title: this.state.inputText}, () => {
-      this.context.store.dispatch(fetchBoard(this.props.boardId))
-    })
+    this.context.store.dispatch(editList({ id: this.props.id,title: this.state.inputText }))
+
+
     this.setState({formOpen: false})
   }
 

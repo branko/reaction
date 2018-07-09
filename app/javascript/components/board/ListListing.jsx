@@ -1,13 +1,14 @@
 import React from 'react';
 import List from './List';
 
-const ListListing = ({ lists }) => {
+const ListListing = ({ lists, submitNewCard }) => {
   const listGroup = lists.map((list, i) => {
     return <List
             key={'list-' + i}
             title={list.title}
             id={list.id}
             boardId={list.board_id}
+            submitNewCard={submitNewCard}
           />
   });
 
@@ -15,7 +16,6 @@ const ListListing = ({ lists }) => {
     <div id="existing-lists" className="existing-lists">
       {listGroup}
     </div>
-
   );
 };
 
