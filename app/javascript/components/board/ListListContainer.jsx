@@ -27,8 +27,6 @@ export default class ListListContainer extends React.Component {
     let id = this.props.match.params.id;
     let store = this.context.store;
     let lists = store.getState().lists.filter(list => list.board_id === +id);
-
-    console.log(store.getState().lists)
     
     return(
       <main>
