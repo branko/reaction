@@ -4,6 +4,8 @@ export default function cardsReducer(state = [], action) {
     const cards = lists.reduce((acc, list) => acc.concat(list.cards), [])
 
     return cards;
+  } else if (action.type === 'CREATE_CARD_SUCCESS') {
+    return state.concat(action.card)
   } else {
     return state;
   }

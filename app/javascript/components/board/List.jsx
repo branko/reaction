@@ -1,10 +1,12 @@
 import React from 'react';
 import CardListContainer from './CardListContainer';
 import EditableListTitle from './EditableListTitle';
+import apiClient from '../../lib/ApiClient'
 
 class List extends React.Component {
   state = {
     addDropdownActive: false,
+    inputText: '',
   }
 
   openDropdown = () => {
@@ -12,12 +14,22 @@ class List extends React.Component {
   }
 
   closeDropdown = () => {
-    console.log('??')
-    this.setState({ addDropdownActive: false })
+    this.setState({
+      addDropdownActive: false,
+      inputText: '',
+    })
+  }
+
+  onChange = (e) => {
+    this.setState({ inputText: e.target.value })
   }
 
   handleSubmit = () => {
-
+    this.props.submitNewCard(+this.props.id, this.state.inputText)
+    this.setState({
+      addDropdownActive: false,
+      inputText: '',
+    })
   }
 
   render() {
@@ -34,15 +46,17 @@ class List extends React.Component {
               boardId={boardId}
             />
             <div className="add-dropdown add-top">
-                <div className="card"></div><a className="button">Add</a><i className="x-icon icon"></i>
-                <div className="add-options"><span>...</span>
+                <div className="card"></div>
+                <a className="button">Add</a><i className="x-icon icon"></i>
+                <div className="add-options">
+                  <span>...</span>
                 </div>
             </div>
             <CardListContainer list_id={id}/>
 
             <div className={`add-dropdown add-bottom ${this.state.addDropdownActive ? 'active-card' : ''}`}>
-              <div className="card"><div className="card-info"></div><textarea name="add-card"></textarea><div className="members"></div></div>
-              <a className="button">Add</a><i onClick={this.closeDropdown} className="x-icon icon"></i>
+              <div className="card"><div className="card-info"></div><textarea onChange={this.onChange} name="add-card">{this.state.inputText}</textarea><div className="members"></div></div>
+              <a onClick={this.handleSubmit} className="button">Add</a><i onClick={this.closeDropdown} className="x-icon icon"></i>
               <div className="add-options"><span>...</span>
               </div>
             </div>

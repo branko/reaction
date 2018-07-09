@@ -2,7 +2,7 @@ import React from 'react';
 import ToggleableListForm from './ToggleableListForm'
 import { fetchBoard } from '../../actions/BoardActions'
 import PropTypes from 'prop-types'
-import apiClient from '../../lib/ApiClient'
+import { createList } from '../../actions/ListActions'
 
 export default class ToggleableListFormContainer extends React.Component {
   state = {
@@ -31,9 +31,16 @@ export default class ToggleableListFormContainer extends React.Component {
   }
 
   handleSubmit = () => {
-    apiClient.createList(this.state.inputText, this.props.boardId, () => {
-      this.context.store.dispatch(fetchBoard(this.props.boardId))
-    })
+
+    this.content.store.dispatch(createList({
+      title: this.state.inputText,
+      boardId: this.props.boardId
+    }))
+
+    // apiClient.createList(this.state.inputText, this.props.boardId, () => {
+    //   this.context.store.dispatch(fetchBoard(this.props.boardId))
+    // })
+
     this.setState({formOpen: false})
   }
 
