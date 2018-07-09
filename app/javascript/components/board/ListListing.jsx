@@ -15,7 +15,6 @@ const ListListing = ({ lists }) => {
     <div id="existing-lists" className="existing-lists">
       {listGroup}
     </div>
-
   );
 };
 
