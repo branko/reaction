@@ -48,10 +48,11 @@ class Api::CardsController < ApplicationController
   end
 
   def create_actions(card, options = {})
-    if options[:new]
-      card.actions.create!(description: "added this card to #{card.list.title}")
-    elsif options[:update]
-      # need to add update actions info here
+    card.actions.create!(description: "added this card to #{card.list.title}") if options[:new]
+      
+    if card.completed_changed?
+      #status = 
+      card.actions.create(description: "#{card.list.title} was marked as ....)
     end
   end
 end
