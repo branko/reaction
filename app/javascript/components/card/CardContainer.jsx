@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Card from './Card';
 import PropTypes from 'prop-types';
 import { fetchCard } from '../../actions/CardActions'
@@ -41,7 +43,9 @@ class CardContainer extends React.Component {
   render() {
     return (
       <div id="modal-container">
-        <div className="screen"></div>
+        <Link to={`/boards/${this.state.card.board_id}`}>
+          <div className="screen"></div>
+        </Link>
         <Card
           card={this.state.card}
           listTitle={this.state.listTitle}
