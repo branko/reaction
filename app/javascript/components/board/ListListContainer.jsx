@@ -26,13 +26,6 @@ export default class ListListContainer extends React.Component {
   }
 
   submitNewCard = (listId, title) => {
-    console.log(listId, title);
-    // apiClient.createCard({
-    //   list_id: id,
-    //   card: {
-    //     title: title
-    //   }
-    // })
     let store = this.context.store;
     store.dispatch(createCard({ listId, title }));
   }

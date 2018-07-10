@@ -17,6 +17,14 @@ export function fetchCardSuccess(card) {
   return { type: types.FETCH_CARD_SUCCESS, card };
 }
 
+export function editCardRequest(card) {
+  return { type: types.EDIT_CARD_REQUEST };
+}
+
+export function editCardSuccess(card) {
+  return { type: types.EDIT_CARD_SUCCESS, card };
+}
+
 export function createCard({ listId, title }, callback) {
   return function(dispatch) {
     dispatch(createCardRequest());
@@ -37,6 +45,19 @@ export function fetchCard(id, callback) {
       dispatch(fetchCardSuccess(card))
 
       if (callback) { callback(card) }
+    })
+  }
+}
+
+export function editCard({ id, title }, callback) {
+  console.log("CARD ID FROM editCard in CARD ACTIONS: ", id)
+  return function(dispatch) {
+    dispatch(editCardRequest())
+
+    apiClient.updateCard(id, { title }, card => {
+      dispatch(editCardSuccess(card))
+
+      if (callback) { callback(card); }
     })
   }
 }

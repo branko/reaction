@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Card from './Card';
 import PropTypes from 'prop-types';
-import { fetchCard } from '../../actions/CardActions'
+import { fetchCard, editCard } from '../../actions/CardActions'
 
 class CardContainer extends React.Component {
   static contextTypes = {
@@ -40,6 +40,12 @@ class CardContainer extends React.Component {
     this.unsubscribe()
   }
 
+  editTitle = ({ title }) => {
+    const store = this.context.store
+    const id = +this.state.card.id
+    store.dispatch(editCard({ id, title }))
+  }
+
   render() {
     return (
       <div id="modal-container">
@@ -49,6 +55,7 @@ class CardContainer extends React.Component {
         <Card
           card={this.state.card}
           listTitle={this.state.listTitle}
+          editTitle={this.editTitle}
         />
       </div>
     )
