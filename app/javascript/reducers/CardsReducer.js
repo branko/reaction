@@ -10,6 +10,10 @@ export default function cardsReducer(state = [], action) {
     let cardsExcludingNewCard = state.filter(card => card.id !== action.card.id)
 
     return cardsExcludingNewCard.concat(action.card)
+  } else if (action.type === 'EDIT_CARD_SUCCESS') {
+    let cardsExcludingEditedCard = state.filter(card => card.id !== action.card.id)
+
+    return cardsExcludingEditedCard.concat(action.card)
   } else {
     return state;
   }
