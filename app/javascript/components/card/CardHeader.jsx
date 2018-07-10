@@ -14,9 +14,9 @@ class CardHeader extends React.Component {
         <textarea
           className="list-title"
           style={STYLE.textareaHeight}
-          value={'Cards do many cool things. Click on this card to open it and learn more...'}
+          value={this.props.title}
         />
-        <p>in list <a className="link">Stuff to try (this is a list)</a><i className="sub-icon sm-icon"></i>
+      <p>in list <a className="link">{this.props.listTitle}</a><i className="sub-icon sm-icon"></i>
         </p>
       </header>
     )

@@ -8,9 +8,15 @@ class CardMain extends React.Component {
     return (
       <section className="modal-main">
         <ul className="modal-outer-list">
-          <CardDetails />
+          <CardDetails
+            labels={this.props.card.labels}
+            dueDate={this.props.card.due_date}
+            description={this.props.card.description}
+          />
           <CardCommentForm />
-          <CardActivity />
+          <CardActivity
+
+          />
         </ul>
       </section>
     )

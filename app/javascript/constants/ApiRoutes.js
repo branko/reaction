@@ -10,3 +10,7 @@ export function boardUrl(id) {
 export function listUrl(id) {
   return '/api/lists/' + id;
 }
+
+export function cardUrl(id) {
+  return '/api/cards/' + id;
+}

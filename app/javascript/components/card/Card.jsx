@@ -9,8 +9,13 @@ class Card extends React.Component {
     return (
       <div id="modal">
         <i className="x-icon icon close-modal"></i>
-        <CardHeader />
-        <CardMain />
+        <CardHeader
+          title={this.props.card.title}
+          listTitle={this.props.listTitle}
+        />
+        <CardMain
+          card={this.props.card}
+        />
         <CardButtons />
       </div>
     )

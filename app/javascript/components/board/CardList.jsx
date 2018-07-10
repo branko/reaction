@@ -3,7 +3,7 @@ import Card from './Card';
 
 const CardList = ({ cards }) => {
 
-  let cardList = cards.map((card, i) => {
+  let cardList = cards.sort().map((card, i) => {
     return <Card key={'card-' + i}
                  id={card.id}
                  title={card.title}
