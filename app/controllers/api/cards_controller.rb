@@ -28,6 +28,7 @@ class Api::CardsController < ApplicationController
 
   def update
     @card = Card.find(params[:id])
+    @list = @card.list
 
     if @card.update(card_params)
       render :update
@@ -49,10 +50,10 @@ class Api::CardsController < ApplicationController
 
   def create_actions(card, options = {})
     card.actions.create!(description: "added this card to #{card.list.title}") if options[:new]
-      
+
     if card.completed_changed?
-      #status = 
-      card.actions.create(description: "#{card.list.title} was marked as ....)
+      #status =
+      card.actions.create(description: "#{card.list.title} was marked as ....")
     end
   end
 end

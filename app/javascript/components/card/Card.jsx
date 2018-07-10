@@ -14,8 +14,7 @@ class Card extends React.Component {
           <i className="x-icon icon close-modal"></i>
         </Link>
         <CardHeader
-          id={this.props.id}
-          title={this.props.card.title}
+          card={this.props.card}
           listTitle={this.props.listTitle}
           editTitle={this.props.editTitle}
         />

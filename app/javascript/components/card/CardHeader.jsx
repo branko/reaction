@@ -8,18 +8,13 @@ const STYLE = {
 }
 
 class CardHeader extends React.Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired
-  }
-
   state = {
-    inputText: '?'
+    inputText: this.props.card.title
   }
 
   componentDidMount() {
-    console.log(this.props.title)
     this.setState({
-      inputText: this.props.title
+      inputText: this.props.card.title
     })
   }
 
@@ -30,7 +25,7 @@ class CardHeader extends React.Component {
   }
 
   onBlur = (e) => {
-    this.props.editTitle({ id: this.props.id, title: e.target.value })
+    this.props.editTitle({ id: +this.props.card.id, title: e.target.value })
   }
 
   render() {
@@ -42,7 +37,7 @@ class CardHeader extends React.Component {
           onBlur={this.onBlur}
           className="list-title"
           style={STYLE.textareaHeight}
-          defaultValue={this.state.inputText}
+          value={this.state.inputText}
         />
       <p>in list <a className="link">{this.props.listTitle}</a><i className="sub-icon sm-icon"></i>
         </p>
