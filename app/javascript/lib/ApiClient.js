@@ -49,6 +49,12 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
+  getCard: function(id, callback) {
+    return axios.get(routes.cardUrl(id))
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
   updateList: function(list_id, newValues, callback) {
     return axios.put(routes.listUrl(list_id), newValues)
       .then(unwrapData)

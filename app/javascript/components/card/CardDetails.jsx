@@ -8,10 +8,16 @@ class CardDetails extends React.Component {
     return (
       <li className="details-section">
         <ul className="modal-details-list">
-          <LabelList />
-          <DueDate />
+          <LabelList
+            labels={this.props.labels}
+          />
+          <DueDate
+            dueDate={this.props.dueDate}
+          />
         </ul>
-        <Description />
+        <Description
+          description={this.props.description}
+        />
       </li>
     )
   }
