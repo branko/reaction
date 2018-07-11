@@ -12,6 +12,7 @@ class CardMain extends React.Component {
             labels={this.props.card.labels}
             dueDate={this.props.card.due_date}
             description={this.props.card.description}
+            editCard={this.props.editCard}
           />
           <CardCommentForm />
           <CardActivity

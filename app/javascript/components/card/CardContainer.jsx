@@ -21,10 +21,10 @@ class CardContainer extends React.Component {
     this.unsubscribe()
   }
 
-  editTitle = ({ title }) => {
+  editCard = (newValues) => {
     const store = this.context.store
     const id = +this.props.match.params.id
-    store.dispatch(editCard({ id, title }))
+    store.dispatch(editCard(id, newValues))
   }
 
   render() {
@@ -41,7 +41,7 @@ class CardContainer extends React.Component {
         <Card
           card={card}
           listTitle={listTitle}
-          editTitle={this.editTitle}
+          editCard={this.editCard}
         />
       </div>)
     } else {

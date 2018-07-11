@@ -25,7 +25,7 @@ class CardHeader extends React.Component {
   }
 
   onBlur = (e) => {
-    this.props.editTitle({ id: +this.props.card.id, title: e.target.value })
+    this.props.editCard({ title: e.target.value })
   }
 
   render() {

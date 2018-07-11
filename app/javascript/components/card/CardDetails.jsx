@@ -1,7 +1,7 @@
 import React from 'react';
 import LabelList from './LabelList'
 import DueDate from './DueDate'
-import Description from './Description'
+import ToggleableDescriptionForm from './ToggleableDescriptionForm'
 
 class CardDetails extends React.Component {
   render() {
@@ -15,8 +15,9 @@ class CardDetails extends React.Component {
             dueDate={this.props.dueDate}
           />
         </ul>
-        <Description
+        <ToggleableDescriptionForm
           description={this.props.description}
+          editCard={this.props.editCard}
         />
       </li>
     )

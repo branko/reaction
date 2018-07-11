@@ -49,12 +49,11 @@ export function fetchCard(id, callback) {
   }
 }
 
-export function editCard({ id, title }, callback) {
-  console.log("CARD ID FROM editCard in CARD ACTIONS: ", id)
+export function editCard(id, newValues, callback) {
   return function(dispatch) {
     dispatch(editCardRequest())
 
-    apiClient.updateCard(id, { title }, card => {
+    apiClient.updateCard(id, newValues, card => {
       dispatch(editCardSuccess(card))
 
       if (callback) { callback(card); }

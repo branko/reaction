@@ -28,7 +28,6 @@ class Api::CardsController < ApplicationController
 
   def update
     @card = Card.find(params[:id])
-    @list = @card.list
 
     if @card.update(card_params)
       render :update
@@ -45,7 +44,7 @@ class Api::CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title)
+    params.require(:card).permit(:title, :description, :due_date, :labels)
   end
 
   def create_actions(card, options = {})

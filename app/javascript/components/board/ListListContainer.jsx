@@ -12,7 +12,6 @@ export default class ListListContainer extends React.Component {
 
   componentDidMount() {
     let id = this.props.match.params.id
-    console.log(this.props.match)
     let store = this.context.store;
 
     this.unsubscribe = store.subscribe(() => {
@@ -37,8 +36,6 @@ export default class ListListContainer extends React.Component {
     let id = +this.props.match.params.id;
 
     if (this.props.match.params[0] === 'cards') {
-      console.log(this.props.match.params[0])
-      console.log(store.getState().cards.find(c => c.id === id))
       id = store.getState().cards.find(c => c.id === id).board_id
     }
 

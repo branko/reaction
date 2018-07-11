@@ -16,10 +16,11 @@ class Card extends React.Component {
         <CardHeader
           card={this.props.card}
           listTitle={this.props.listTitle}
-          editTitle={this.props.editTitle}
+          editCard={this.props.editCard}
         />
         <CardMain
           card={this.props.card}
+          editCard={this.props.editCard}
         />
         <CardButtons />
       </div>
