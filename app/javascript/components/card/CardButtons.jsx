@@ -1,6 +1,41 @@
 import React from 'react';
 
 class CardButtons extends React.Component {
+  handleArchive = () => {
+    this.props.editCard({archived: true})
+  }
+
+  handleUnarchive = () => {
+    this.props.editCard({archived: false})
+  }
+
+  unarchivedButtons() {
+    return (
+      <ul>
+        <li className="move-button"><i className="forward-icon sm-icon"></i>Move</li>
+        <li className="copy-button"><i className="card-icon sm-icon"></i>Copy</li>
+        <li className="subscribe-button"><i className="sub-icon sm-icon"></i>Subscribe<i className="check-icon sm-icon"></i>
+        </li>
+        <hr />
+        <li className="archive-button" onClick={this.handleArchive}><i className="file-icon sm-icon "></i>Archive</li>
+      </ul>
+    )
+  }
+
+  archivedButtons() {
+    return (
+      <ul>
+        <li className="move-button"><i className="forward-icon sm-icon"></i>Move</li>
+        <li className="copy-button"><i className="card-icon sm-icon"></i>Copy</li>
+        <li className="subscribe-button"><i className="sub-icon sm-icon"></i>Subscribe<i className="check-icon sm-icon"></i>
+        </li>
+        <hr />
+        <li className="unarchive-button" onClick={this.handleUnarchive}><i className="send-icon sm-icon"></i>Send to board</li>
+        <li className="red-button"><i className="minus-icon sm-icon"></i>Delete</li>
+      </ul>
+    )
+  }
+
   render() {
     return (
       <aside className="modal-buttons">
@@ -13,14 +48,9 @@ class CardButtons extends React.Component {
           <li className="attachment-button not-implemented"><i className="attachment-icon sm-icon"></i>Attachment</li>
         </ul>
         <h2>Actions</h2>
-        <ul>
-          <li className="move-button"><i className="forward-icon sm-icon"></i>Move</li>
-          <li className="copy-button"><i className="card-icon sm-icon"></i>Copy</li>
-          <li className="subscribe-button"><i className="sub-icon sm-icon"></i>Subscribe<i className="check-icon sm-icon"></i>
-          </li>
-          <hr />
-          <li className="archive-button"><i className="file-icon sm-icon "></i>Archive</li>
-        </ul>
+
+        {this.props.archived ? this.archivedButtons() : this.unarchivedButtons() }
+
         <ul className="light-list">
           <li className="not-implemented">Share and more...</li>
         </ul>

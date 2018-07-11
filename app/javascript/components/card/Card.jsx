@@ -6,6 +6,14 @@ import CardMain from './CardMain'
 import CardButtons from './CardButtons'
 
 class Card extends React.Component {
+  archiveBanner() {
+    return (
+      <div className="archived-banner">
+        <i className="file-icon icon">
+        </i>This card is archived.
+      </div>
+    )
+  }
 
   render() {
     return (
@@ -13,6 +21,9 @@ class Card extends React.Component {
         <Link to={`/boards/${this.props.card.board_id}`}>
           <i className="x-icon icon close-modal"></i>
         </Link>
+
+        {this.props.card.archived && this.archiveBanner() }
+
         <CardHeader
           card={this.props.card}
           listTitle={this.props.listTitle}
@@ -22,7 +33,10 @@ class Card extends React.Component {
           card={this.props.card}
           editCard={this.props.editCard}
         />
-        <CardButtons />
+        <CardButtons
+          archived={this.props.card.archived}
+          editCard={this.props.editCard}
+        />
       </div>
     )
   }

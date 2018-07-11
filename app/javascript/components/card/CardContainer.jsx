@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import PropTypes from 'prop-types';
 import { fetchCard, editCard } from '../../actions/CardActions'
+import { fetchBoard } from '../../actions/BoardActions'
 
 class CardContainer extends React.Component {
   static contextTypes = {
