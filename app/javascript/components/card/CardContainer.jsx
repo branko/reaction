@@ -34,10 +34,16 @@ class CardContainer extends React.Component {
   }
 
   popoverChildren() {
+    const id = +this.props.match.params.id
+    const store = this.context.store;
+    let card = store.getState().cards.find(card => card.id === id)
+
     if (this.state.popover.visible && this.state.popover.type) {
       return (
         <LabelsForm
           handleClosePopover={this.handleClosePopover}
+          editCard={this.editCard}
+          labels={card.labels}
         />
       )
     }
