@@ -31,8 +31,7 @@ export default class ToggleableListFormContainer extends React.Component {
   }
 
   handleSubmit = () => {
-
-    this.content.store.dispatch(createList({
+    this.context.store.dispatch(createList({
       title: this.state.inputText,
       boardId: this.props.boardId
     }))
