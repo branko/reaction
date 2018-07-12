@@ -1,6 +1,22 @@
 import React from 'react';
 
 class CardCommentForm extends React.Component {
+  state = {
+    inputText: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({inputText: e.target.value})
+  }
+
+  handleSubmit = () => {
+    let inputText = this.state.inputText.trim()
+    if (inputText !== '') {
+      this.props.handleCommentSubmit(inputText)
+      this.setState({inputText: ''})
+    }
+  }
+
   render() {
     return (
       <li className="comment-section">
@@ -11,7 +27,13 @@ class CardCommentForm extends React.Component {
           </div>
           <div className="comment">
             <label>
-              <textarea required="" rows="1" placeholder="Write a comment..."></textarea>
+              <textarea
+                required=""
+                rows="1"
+                placeholder="Write a comment..."
+                value={this.state.inputText}
+                onChange={this.handleChange}
+              ></textarea>
               <div>
                 <a className="light-button card-icon sm-icon"></a>
                 <a className="light-button smiley-icon sm-icon"></a>
@@ -19,7 +41,12 @@ class CardCommentForm extends React.Component {
                 <a className="light-button attachment-icon sm-icon"></a>
               </div>
               <div>
-                <input type="submit" className="button not-implemented" value="Save" />
+                <input
+                  type="submit"
+                  className="button"
+                  value="Save"
+                  onClick={this.handleSubmit}
+                />
               </div>
             </label>
           </div>

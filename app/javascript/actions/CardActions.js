@@ -40,7 +40,6 @@ export function createCard({ listId, title }, callback) {
 export function fetchCard(id, callback) {
   return function(dispatch) {
     dispatch(fetchCardRequest());
-
     apiClient.getCard(id, card => {
       dispatch(fetchCardSuccess(card))
 
