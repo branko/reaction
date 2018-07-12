@@ -17,7 +17,8 @@ export default class LabelsForm extends React.Component {
   handleRemoveLabel = (e) => {
     const labelId = Number($(e.target).attr('data-id'))
     const label = this.allLabels[labelId]
-    const labels = this.props.labels.filter(l => l === label)
+    const labels = this.props.labels.filter(l => l !== label)
+
     this.props.editCard({ labels })
   }
 

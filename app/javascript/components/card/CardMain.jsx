@@ -18,6 +18,7 @@ class CardMain extends React.Component {
             dueDate={this.props.card.due_date}
             description={this.props.card.description}
             editCard={this.props.editCard}
+            handleShowPopover={this.props.handleShowPopover}
           />
           <CardCommentForm
             cardId={this.props.card.id}

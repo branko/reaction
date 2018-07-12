@@ -10,6 +10,7 @@ class CardDetails extends React.Component {
         <ul className="modal-details-list">
           <LabelList
             labels={this.props.labels}
+            handleShowPopover={this.props.handleShowPopover}
           />
           <DueDate
             dueDate={this.props.dueDate}
