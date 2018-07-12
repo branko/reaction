@@ -21,7 +21,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div id="modal">
+      <div id="modal" onClick={this.props.handleOverlayClick}>
         <Link to={`/boards/${this.props.card.board_id}`}>
           <i className="x-icon icon close-modal"></i>
         </Link>
@@ -37,10 +37,12 @@ class Card extends React.Component {
           card={this.props.card}
           editCard={this.props.editCard}
           handleCommentSubmit={this.handleCommentSubmit}
+          handleShowPopover={this.props.handleShowPopover}
         />
         <CardButtons
           archived={this.props.card.archived}
           editCard={this.props.editCard}
+          handleShowPopover={this.props.handleShowPopover}
         />
       </div>
     )
