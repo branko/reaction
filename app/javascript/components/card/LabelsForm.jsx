@@ -18,6 +18,7 @@ export default class LabelsForm extends React.Component {
     const labelId = Number($(e.target).attr('data-id'))
     const label = this.allLabels[labelId]
     const labels = this.props.labels.filter(l => l !== label)
+
     this.props.editCard({ labels })
   }
 
