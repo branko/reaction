@@ -1,18 +1,18 @@
 import React from 'react';
 
-export default function CardComment() {
+export default function CardComment({ text, createdAt, updatedAt }) {
   return (
     <li className="activity-comment">
       <div className="member-container">
         <div className="card-member">TP</div>
       </div>
       <h3>Taylor Peat</h3>
-      <div className="comment static-comment"><span>The activities are not functional.</span>
+      <div className="comment static-comment"><span>{text}</span>
       </div>
-      <small>22 minutes ago - <span className="link">Edit</span> - <span className="link">Delete</span></small>
+      <small>{createdAt} - <span className="link">Edit</span> - <span className="link">Delete</span></small>
       <div className="comment">
         <label>
-          <textarea required="" rows="1">The activities have not been implemented yet.</textarea>
+          <textarea required="" rows="1" defaultValue="Edit has not been implemented yet."></textarea>
           <div>
             <a className="light-button card-icon sm-icon"></a>
             <a className="light-button smiley-icon sm-icon"></a>

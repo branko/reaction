@@ -15,6 +15,10 @@ class Card extends React.Component {
     )
   }
 
+  handleCommentSubmit = (commentText) => {
+    this.props.handleCommentSubmit(commentText)
+  }
+
   render() {
     return (
       <div id="modal">
@@ -32,6 +36,7 @@ class Card extends React.Component {
         <CardMain
           card={this.props.card}
           editCard={this.props.editCard}
+          handleCommentSubmit={this.handleCommentSubmit}
         />
         <CardButtons
           archived={this.props.card.archived}
