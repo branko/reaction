@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Card from './Card';
+import LabelsForm from './LabelsForm';
+import Popover from '../shared/Popover';
 import PropTypes from 'prop-types';
 import { fetchCard, editCard } from '../../actions/CardActions'
 import { fetchBoard } from '../../actions/BoardActions'
@@ -10,6 +12,14 @@ import { createComment } from '../../actions/CommentActions'
 class CardContainer extends React.Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
+  }
+
+  state = {
+    popover: {
+      visible: false,
+      attachedTo: null,
+      type: null
+    }
   }
 
   componentDidMount() {
@@ -21,6 +31,16 @@ class CardContainer extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe()
+  }
+
+  popoverChildren() {
+    if (this.state.popover.visible && this.state.popover.type) {
+      return (
+        <LabelsForm
+          handleClosePopover={this.handleClosePopover}
+        />
+      )
+    }
   }
 
   editCard = (newValues) => {
@@ -35,6 +55,37 @@ class CardContainer extends React.Component {
     const text = commentText
     store.dispatch(createComment({ cardId, text }))
   }
+
+  closePopover = () => {
+    this.setState({
+      popover: {
+        type: null,
+        attachedTo: null,
+        visible: false
+      }
+    });
+  }
+
+  handleShowPopover = (e, type) => {
+    e.stopPropagation();
+
+    this.setState({
+      popover: {
+        type,
+        attachedTo: e.target,
+        visible: true
+      }
+    });
+  };
+
+  handleClosePopover = (e) => {
+    e.preventDefault()
+    this.closePopover()
+  }
+
+  handleOverlayClick = (e) => {
+    this.closePopover()
+  };
 
   render() {
     const id = +this.props.match.params.id
@@ -52,7 +103,13 @@ class CardContainer extends React.Component {
           listTitle={listTitle}
           editCard={this.editCard}
           handleCommentSubmit={this.handleCommentSubmit}
+          handleShowPopover={this.handleShowPopover}
+          handleClosePopover={this.handleClosePopover}
+          handleOverlayClick={this.handleOverlayClick}
         />
+        <Popover {...this.state.popover}>
+          {this.popoverChildren()}
+        </Popover>
       </div>)
     } else {
       return ''
