@@ -1,51 +1,36 @@
 import React from 'react';
+import moment from 'moment';
+import { calculateDueClass } from '../../lib/Helpers'
+
 import { Link } from 'react-router-dom';
 
-// import moment from 'moment';
-
-const Card = ({ id, title, labels, dueDate }) => {
-  let colorLabels = labels.map((l, i) => {
-    return <div key={i} className={`card-label ${l} colorblindable`}></div>
+const Card = ({ card }) => {
+  let colorLabels = card.labels.map((label, i) => {
+    return <div key={i} className={`card-label ${label} colorblindable`}></div>
   })
 
-  // overdue-recent overdue due-soon
-  // completed
-
-  const RECENT_WINDOW = 86400000 * 2
-
-  function calculateDueClass() {
-    let currentDate = new Date
-    let tempDueDate = new Date(dueDate)
-
-    if (currentDate - tempDueDate <= 0) {
-      return 'due-soon'
-    } else if (currentDate - tempDueDate < RECENT_WINDOW) {
-      return 'overdue-recent'
-    } else if (currentDate - tempDueDate >= RECENT_WINDOW) {
-      return 'overdue'
-    }
-  }
-
   function cardIcons() {
-    return (<div className="card-icons">
-      {dueDate ? <i className={`clock-icon sm-icon ${calculateDueClass()}`}>{dueDate}</i> : ''}
-      <i className="description-icon sm-icon"></i>
-      <i className="comment-icon sm-icon"></i>
-    </div>)
-  }
+    let dueDateString = moment(card.dueDate).format('MMM D')
 
-  // dueDate = moment(dueDate).format('MMMM Do')
+    return (
+      <div className="card-icons">
+        {card.dueDate ? <i className={`clock-icon sm-icon ${calculateDueClass(dueDate)}`}>{dueDateString}</i> : ''}
+        {card.description ? <i className="description-icon sm-icon"></i> : null}
+        {(card.comments && card.comments.length) ? <i className="comment-icon sm-icon"></i> : ''}
+      </div>
+    )
+  }
 
   return (
-    <Link to={`/cards/${id}`}>
+    <Link to={`/cards/${card.id}`}>
       <div className="card-background">
-          <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-              <div className="card-info">
-                  {colorLabels}
-                  <p>{title}</p>
-              </div>
-              {cardIcons()}
-          </div>
+        <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
+            <div className="card-info">
+                {colorLabels}
+                <p>{card.title}</p>
+            </div>
+            {cardIcons()}
+        </div>
       </div>
     </Link>
   );

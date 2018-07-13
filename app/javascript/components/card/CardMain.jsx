@@ -17,6 +17,7 @@ class CardMain extends React.Component {
             labels={this.props.card.labels}
             dueDate={this.props.card.due_date}
             description={this.props.card.description}
+            completed={this.props.card.completed}
             editCard={this.props.editCard}
             handleShowPopover={this.props.handleShowPopover}
           />

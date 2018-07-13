@@ -8,13 +8,8 @@ class CardDetails extends React.Component {
     return (
       <li className="details-section">
         <ul className="modal-details-list">
-          <LabelList
-            labels={this.props.labels}
-            handleShowPopover={this.props.handleShowPopover}
-          />
-          <DueDate
-            dueDate={this.props.dueDate}
-          />
+        {this.props.labels.length !== 0 && <LabelList labels={this.props.labels} handleShowPopover={this.props.handleShowPopover}/>}
+        {this.props.dueDate !== null && <DueDate dueDate={this.props.dueDate} completed={this.props.completed} editCard={this.props.editCard}/>}
         </ul>
         <ToggleableDescriptionForm
           description={this.props.description}
