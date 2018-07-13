@@ -17,8 +17,6 @@ class EditableListTitle extends React.Component {
 
   handleSubmit = () => {
     this.context.store.dispatch(editList({ id: this.props.id,title: this.state.inputText }))
-
-
     this.setState({formOpen: false})
   }
 

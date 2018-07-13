@@ -18,6 +18,10 @@ class CardHeader extends React.Component {
     })
   }
 
+  submitTitle = (title) => {
+    this.props.editCard({ title })
+  }
+
   onChange = (e) => {
     this.setState({
       inputText: e.target.value
@@ -25,7 +29,13 @@ class CardHeader extends React.Component {
   }
 
   onBlur = (e) => {
-    this.props.editCard({ title: e.target.value })
+    this.submitTitle(e.target.value)
+  }
+
+  onKeyDown = (e) => {
+    if (e.keyCode == 13) {
+      e.preventDefault()
+    }
   }
 
   render() {
@@ -35,6 +45,7 @@ class CardHeader extends React.Component {
         <textarea
           onChange={this.onChange}
           onBlur={this.onBlur}
+          onKeyDown={this.onKeyDown}
           className="list-title"
           style={STYLE.textareaHeight}
           value={this.state.inputText}
