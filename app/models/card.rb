@@ -4,4 +4,8 @@ class Card < ApplicationRecord
   belongs_to :board
   has_many :actions, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def comments_count
+    comments.size
+  end
 end

@@ -16,7 +16,7 @@ const Card = ({ card }) => {
       <div className="card-icons">
         {card.dueDate ? <i className={`clock-icon sm-icon ${calculateDueClass(dueDate)}`}>{dueDateString}</i> : ''}
         {card.description ? <i className="description-icon sm-icon"></i> : null}
-        {(card.comments && card.comments.length) ? <i className="comment-icon sm-icon"></i> : ''}
+        {card.comments_count ? <i className="comment-icon sm-icon"></i> : ''}
       </div>
     )
   }
