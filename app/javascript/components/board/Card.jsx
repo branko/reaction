@@ -10,11 +10,12 @@ const Card = ({ card }) => {
   })
 
   function cardIcons() {
-    let dueDateString = moment(card.dueDate).format('MMM D')
+    let dueDate = card.due_date
+    let dueDateString = moment(dueDate).format('MMM D')
 
     return (
       <div className="card-icons">
-        {card.dueDate ? <i className={`clock-icon sm-icon ${calculateDueClass(dueDate)}`}>{dueDateString}</i> : ''}
+        {dueDate ? <i className={`clock-icon sm-icon ${calculateDueClass(dueDate)} ${card.completed ? 'completed' : ''}`}>{dueDateString}</i> : ''}
         {card.description ? <i className="description-icon sm-icon"></i> : null}
         {card.comments_count ? <i className="comment-icon sm-icon"></i> : ''}
       </div>

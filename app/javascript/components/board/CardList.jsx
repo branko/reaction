@@ -2,7 +2,6 @@ import React from 'react';
 import Card from './Card';
 
 const CardList = ({ cards }) => {
-
   let cardList = cards
     .filter(card => card.archived === false)
     .sort((a, b) => {
