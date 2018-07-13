@@ -5,7 +5,9 @@ const CardList = ({ cards }) => {
 
   let cardList = cards
     .filter(card => card.archived === false)
-    .sort()
+    .sort((a, b) => {
+      return new Date(a.created_at) - new Date(b.created_at)
+    })
     .map((card, i) => {
       return (
         <Card
