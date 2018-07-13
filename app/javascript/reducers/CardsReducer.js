@@ -11,7 +11,9 @@ export default function cardsReducer(state = [], action) {
 
     return cardsExcludingNewCard.concat(action.card)
   } else if (action.type === 'EDIT_CARD_SUCCESS') {
+    let card = state.find(card => card.id === action.card.id)
     let cardsExcludingEditedCard = state.filter(card => card.id !== action.card.id)
+    action.card.comments = card.comments || []
 
     return cardsExcludingEditedCard.concat(action.card)
   } else if (action.type === 'CREATE_COMMENT_SUCCESS') {
